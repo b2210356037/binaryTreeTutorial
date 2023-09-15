@@ -32,6 +32,22 @@ void traverse(node* tree) {  // LNR (left-node-right)
     traverse(tree->right);
 }
 
+int IsThere(node* tree, int target) {
+    if (tree == NULL) {
+        return -1;
+    }
+    if (tree->data == target) {
+        return 1;
+    }
+    if (IsThere(tree->right, target) == 1) {
+        return 1;
+    }
+    if (IsThere(tree->left, target) == 1) {
+        return 1;
+    }
+    return -1;
+}
+
 int main()
 {
     node* tree = NULL;
@@ -46,5 +62,6 @@ int main()
     tree = add(tree, 200);
     tree = add(tree, 213);
     traverse(tree);
+    printf("target has: %d ", IsThere(tree, 13));
 }
 
